@@ -82,7 +82,7 @@ def predict(input_payload: FinancialInput):
                 ]
             })
 
-        return {"results": explanations}
+        return {"results": explanations, "prediction" : int(preds[i])}
 
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))

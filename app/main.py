@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
 import joblib
@@ -8,6 +9,14 @@ import pandas as pd
 import os
 
 app = FastAPI(title="Window Dressing Detection API with SHAP")
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # --- Load Required Artifacts ---
 MODEL_PATH = "model/window_dressing_model.pkl"
